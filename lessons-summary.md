@@ -1,0 +1,9 @@
+# Lessons summary
+
+| Category | Problem | Common location/skill module | Impact | Solution |
+|---|---|---|---|---|
+| Runtime integration | Rust launched a Python scraper with the system interpreter instead of the project virtual environment | `backend/.env`, Rust child-process configuration, `scraper/` | All ASIN requests failed before scraping | Pin `SCRAPER_COMMAND` to `.venv/bin/python3`, install requirements there, and restart stale services |
+| LLM integration | DeepSeek JSON mode occasionally returned empty `message.content` with thinking enabled | `backend/src/main.rs`, script generation API | Valid model calls surfaced as malformed-script errors | Disable thinking for JSON copy tasks, retry empty/invalid output once, unwrap fenced JSON, and expose safe parse diagnostics |
+| Frontend integration | Unconditional `response.json()` hid an empty upstream response | `frontend/src/lib/api.ts`, API client | Users saw a browser exception instead of an actionable error | Parse text defensively, classify empty/non-JSON/network/HTTP failures, and preserve backend messages; upstream empty-body source pending validation |
+| LLM product UX | A recoverable first-person claim validation failure was shown directly to the user | `backend/src/main.rs`, creative bundle orchestration | Generation stopped even though the model could rewrite the copy | Automatically retry the full bundle with the failed constraint; show only a concise final error if bounded repairs fail; user-product validation pending |
+| Product data integration | Live Amazon HTML and a Python subprocess created unstable product retrieval | `backend/src/main.rs`, former `scraper/` adapter | The main generation path failed before LLM work and varied with page/runtime state | Use Keepa Product API directly from Rust, enable gzip, normalize documented fields, secure the key, and cache by locale plus ASIN |

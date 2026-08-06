@@ -1,0 +1,8 @@
+keepa_key.json
+backend/.env
+.venv/
+frontend/node_modules/
+frontend/dist/
+backend/target/
+__pycache__/
+*.tsbuildinfo
