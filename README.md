@@ -42,6 +42,27 @@
 
 访问 http://127.0.0.1:5173。详细配置见 [docs/configuration.md](docs/configuration.md)，代码结构见 [docs/architecture.md](docs/architecture.md)。
 
+## Docker 启动
+
+确认 `backend/.env` 已配置 DeepSeek、Keepa 和 `TUNNEL_TOKEN` 后，在项目根目录执行：
+
+```bash
+docker compose up -d --build
+```
+
+访问 http://127.0.0.1:5173；配置好 Cloudflare Public Hostname 后也可通过对应域名访问。查看状态和日志：
+
+```bash
+docker compose ps
+docker compose logs -f
+```
+
+停止服务：
+
+```bash
+docker compose down
+```
+
 ## 注意
 
 - 商品数据来自 Keepa Product API。每次查询会消耗 Keepa token，应在生产环境加入按 ASIN/站点缓存。

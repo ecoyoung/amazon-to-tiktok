@@ -202,8 +202,9 @@ async fn main() -> Result<()> {
         .layer(CorsLayer::very_permissive())
         .layer(TraceLayer::new_for_http())
         .with_state(state);
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:8787").await?;
-    println!("API listening on http://127.0.0.1:8787");
+    let bind_addr = env::var("BIND_ADDR").unwrap_or_else(|_| "127.0.0.1:8787".into());
+    let listener = tokio::net::TcpListener::bind(&bind_addr).await?;
+    println!("API listening on http://{bind_addr}");
     axum::serve(listener, app).await?;
     Ok(())
 }

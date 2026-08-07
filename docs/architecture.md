@@ -13,6 +13,7 @@ curl/
 │       ├── lib/api.ts       唯一前端 API 客户端
 │       └── style.css        页面样式
 ├── docs/                    配置与架构文档
+├── compose.yaml             Docker Compose 生产式本地运行入口
 ├── keepa_key.json           旧版 Keepa 密钥备份（已忽略，可移除）
 ├── PROMPT_RESEARCH.md       提示词研究记录
 ├── lessons.md               已验证问题与修复
