@@ -1,3 +1,5 @@
+**简体中文** | [English](README.en.md)
+
 # HookPop
 
 一个本地工具：输入 Amazon ASIN 或商品链接，通过 Keepa Product API 获取主图、标题和五点描述并输出规范化商品资料。随后通过两次独立 LLM 调用，先形成结构化卖点与内容切入点，再生成英文或西语 TikTok 视频脚本。
